@@ -1,0 +1,31 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+package-lock.json
+dist
+
+*.sublime*
+psd
+thumb
+sketch
+
+build/
+
+### WebStorm Patch ###
+*.iml
+modules.xml
+.idea/misc.xml
+*.ipr
+vcs.xml
