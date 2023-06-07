@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {func} from "three/nodes";
 
 export function example() {
     const canvas = document.querySelector('#three-canvas');
@@ -22,8 +23,8 @@ export function example() {
         0.1, //near
         1000 //far
     );
-    camera.position.x = 2;
-    camera.position.y = 2;
+    // camera.position.x = 2;
+    // camera.position.y = 2;
     camera.position.z = 5;
     scene.add(camera);
 
@@ -44,6 +45,21 @@ export function example() {
 
     renderer.render(scene, camera);
 
+    function draw(){
+        //각도는 Radian을 사용
+        //360도는 2파이
+        // mesh.rotation.y += 0.1;
+        //만약 우리가 흔히 쓰는 1도, 2도 같은 단위를 사용하고 싶다면 이렇게!
+        mesh.rotation.y += THREE.MathUtils.degToRad(5);
+        mesh.position.y += 0.01;
+        if(mesh.position.y > 3){
+            mesh.position.y = 0;
+        }
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(draw);
+        //VR이나 AR같은 컨텐츠는 이 함수를 사용해야함
+        // renderer.setAnimationLoop(draw);
+    }
     function setSize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
@@ -51,4 +67,5 @@ export function example() {
         renderer.render(scene, camera);
     }
     window.addEventListener('resize', setSize);
+    draw();
 }
